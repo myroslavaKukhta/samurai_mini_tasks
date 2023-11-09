@@ -3,10 +3,10 @@ import styled from "styled-components";
 import {Link} from "./Link.styled";
 export const Box = styled.div `
 display: flex;
-  height: 100vh;
   justify-content: center;
   align-items: center;
   gap: 20px;
+  background-color: aqua;
 
   button {
     cursor: pointer;
