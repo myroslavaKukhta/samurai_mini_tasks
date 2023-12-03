@@ -1,14 +1,17 @@
 import React from 'react';
-import './App.css';
-import Counter from "./Counter";
+import {Counter} from "./Counter";
+import s from "./App.module.css";
+
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Mira Counter</h1>
-      <Counter number={0} />
-    </div>
-  );
+    return (
+        <div className={s.app}>
+            <div className={s.counter}>
+                <h3> Mira Counter</h3>
+                <Counter number={0}/>
+            </div>
+        </div>
+    );
 }
 
 export default App;

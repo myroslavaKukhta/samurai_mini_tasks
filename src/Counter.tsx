@@ -1,27 +1,45 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import s from './Counter.module.css'
 
-type CounterProps = {
-    number: number;
-};
+type CounterPropsType = {
+    number: number
+}
 
-const Counter: React.FC<CounterProps> = ({ number }) => {
-    const [count, setCount] = useState<number>(number);
+export const Counter: React.FC<CounterPropsType> = ({number}) => {
+    let [count, setCount] = useState<number>(number)
+    let [error, setError] = useState<number | null>(null);
+    const maxValue = 5;
+    const startValue = 0;
 
     const onPlusHandler = () => {
-        setCount(count + 1);
-    };
+        if (count < maxValue) {
+            setCount(count + 1)
+        } else {
+            setError(null)
+        }
+    }
 
-    const onMinusHandler = () => {
-        setCount(count - 1);
-    };
+    const onResetHandler = () => {
+        setCount(startValue);
+    }
 
     return (
-        <div>
-            <p>Count: {count}</p>
-            <button onClick={onPlusHandler}>+</button>
-            <button onClick={onMinusHandler}>-</button>
+        <div className={s.container}>
+            <div className={s.count}>
+            <p>Count:</p>
+            <p className={count < maxValue ? s.normal : s.max}> {count}</p>
+            </div>
+            <div className={s.buttons}>
+                <button onClick={onPlusHandler} className={count < maxValue ? s.normal : s.max}
+                        disabled={count === maxValue}>
+                    increment
+                </button>
+
+                <button onClick={onResetHandler} className={count > startValue ? s.normal : s.max}
+                        disabled={count === startValue}>
+                    reset
+                </button>
+            </div>
         </div>
     );
 };
-
-export default Counter;
